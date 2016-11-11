@@ -1,0 +1,25 @@
+package com.digitalmatrix.game;
+
+import com.badlogic.gdx.math.Vector2;
+import com.badlogic.gdx.physics.box2d.Body;
+import com.badlogic.gdx.physics.box2d.World;
+
+public class GameObject{
+	
+	Body body;
+
+	protected GameObject(World world) {
+		
+	}
+
+	int zRender = 0;
+	
+	public Vector2 getPosition(){
+		return body.getWorldCenter();
+	}
+	
+	public void setPositon(Vector2 position){
+		body.getTransform().setPosition(position);
+	}
+
+}

@@ -1,0 +1,26 @@
+package com.digitalmatrix.game;
+
+import com.badlogic.gdx.graphics.OrthographicCamera;
+import com.badlogic.gdx.physics.box2d.BodyDef;
+import com.badlogic.gdx.physics.box2d.PolygonShape;
+import com.badlogic.gdx.physics.box2d.World;
+
+public class Player extends GameObject{
+	
+	OrthographicCamera camera;
+	
+	public Player(World world, BodyDef def) {
+		super(world, def);
+		body.setUserData(this);
+		
+		PolygonShape shape = new PolygonShape();
+		shape.setAsBox(32/2, 32/2);
+		body.createFixture(shape, 1);
+		shape.dispose();
+	}
+
+	public void setCamera(OrthographicCamera camera){
+		this.camera = camera;
+	}
+
+}

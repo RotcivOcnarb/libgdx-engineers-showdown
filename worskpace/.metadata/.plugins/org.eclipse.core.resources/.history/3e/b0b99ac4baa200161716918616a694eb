@@ -1,0 +1,29 @@
+package com.digitalmatrix.game;
+
+import java.util.ArrayList;
+import java.util.Arrays;
+
+import com.badlogic.gdx.graphics.g2d.SpriteBatch;
+import com.badlogic.gdx.physics.box2d.World;
+
+public abstract class Level{
+
+	World world;
+	Player player;
+	ArrayList<GameObject> objects;
+	int ID;
+	
+	public void init(Player player, World world){
+		this.world = world;
+		this.player = player;
+	}
+	public void update(){
+		GameObject[] gos = new GameObject[objects.size()];
+		objects.toArray(gos);
+		
+	}
+	public void render(SpriteBatch batch){
+		
+	}
+
+}

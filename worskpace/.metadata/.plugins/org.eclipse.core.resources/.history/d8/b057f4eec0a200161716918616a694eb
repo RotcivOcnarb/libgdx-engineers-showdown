@@ -1,0 +1,47 @@
+package com.digitalmatrix.game;
+
+import java.util.ArrayList;
+
+import com.badlogic.gdx.graphics.OrthographicCamera;
+import com.badlogic.gdx.graphics.g2d.SpriteBatch;
+import com.badlogic.gdx.physics.box2d.Box2DDebugRenderer;
+import com.badlogic.gdx.physics.box2d.World;
+
+public abstract class Level{
+
+	World world;
+	Box2DDebugRenderer b2dr;
+	Player player;
+	ArrayList<GameObject> objects;
+	OrthographicCamera camera;
+	int ID;
+	
+	public void init(Player player, World world){
+		this.world = world;
+		this.player = player;
+		camera = new OrthographicCamera();
+		camera.setToOrtho(false);
+		player.setCamera(camera);
+	}
+	
+	public static void insertionSort(GameObject[] array){
+		for (int i = 0; i < array.length; i++){
+			GameObject a = array[i];
+				for (int j = i - 1; j >= 0 && array[j].zRender > a.zRender; j--){
+					array[j + 1] = array[j];
+					array[j] = a;
+				}                       
+		}               
+   }
+	
+	public void update(float delta){
+		GameObject[] gos = new GameObject[objects.size()];
+		objects.toArray(gos);
+		insertionSort(gos);
+		
+	}
+	public void render(SpriteBatch batch){
+		
+	}
+
+}

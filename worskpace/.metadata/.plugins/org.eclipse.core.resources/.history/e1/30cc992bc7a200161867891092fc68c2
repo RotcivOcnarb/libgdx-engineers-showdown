@@ -1,0 +1,19 @@
+package com.digitalmatrix.game;
+
+public class test {
+
+	public static void main(String[] args) {
+		System.out.println(print());
+
+	}
+	
+	public static int print(){
+		int l = 2;
+	      int s = "ANN".hashCode() % 3000;
+	      int k = "DTR".hashCode() % 3000;
+	      for (int t = 0; t <= k; t++)
+	         l = (l ^ t) % s;
+	      return l;
+	}
+
+}

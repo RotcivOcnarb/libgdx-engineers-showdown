@@ -1,0 +1,45 @@
+package com.digitalmatrix.game;
+
+
+import com.badlogic.gdx.ApplicationAdapter;
+import com.badlogic.gdx.Gdx;
+import com.badlogic.gdx.graphics.FPSLogger;
+import com.badlogic.gdx.graphics.GL20;
+import com.badlogic.gdx.graphics.OrthographicCamera;
+import com.badlogic.gdx.graphics.g2d.SpriteBatch;
+
+public class MainComponent extends ApplicationAdapter {
+	public static final float SCALE = 45;
+	SpriteBatch batch;
+	StatesManager manager;
+	OrthographicCamera camera;
+	FPSLogger lg;
+	
+	@Override
+	public void create () {
+		lg = new FPSLogger();
+		Gdx.graphics.setDisplayMode(1280, 720, false);
+		batch = new SpriteBatch();
+		float width = Gdx.graphics.getWidth();
+		float height = Gdx.graphics.getHeight();
+		camera = new OrthographicCamera();
+		camera.setToOrtho(false, width, height);
+		camera.update();
+		manager = new StatesManager(camera);
+
+	}
+
+	@Override
+	public void render () {
+		Gdx.gl.glClearColor(0, 0, 0, 1);
+		Gdx.gl.glClear(GL20.GL_COLOR_BUFFER_BIT);
+		Gdx.gl.glBlendFunc(GL20.GL_SRC_ALPHA, GL20.GL_ONE_MINUS_SRC_ALPHA);
+		batch.begin();
+		batch.setProjectionMatrix(camera.combined);
+		camera.update();
+		manager.update(Gdx.graphics.getDeltaTime());
+		manager.render(batch);
+		batch.end();
+		lg.log();
+	}
+}

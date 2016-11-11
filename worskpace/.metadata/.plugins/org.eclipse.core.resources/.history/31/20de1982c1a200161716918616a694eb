@@ -1,0 +1,35 @@
+package com.digitalmatrix.game;
+
+
+import java.util.ArrayList;
+
+import com.badlogic.gdx.graphics.g2d.SpriteBatch;
+import com.badlogic.gdx.math.Vector2;
+import com.badlogic.gdx.physics.box2d.World;
+
+public class Game extends State {
+	
+	ArrayList<Level> levels;
+	int currentLevel = 0;
+	Player player;
+	
+	public void init() {
+		levels = new ArrayList<Level>();
+		World world = new World(new Vector2(0, 0), false);
+		player = new Player(world);
+		levels.get(currentLevel).init(player, world);
+	}
+
+	public void update(float delta) {
+
+	}
+
+	public void render(SpriteBatch batch) {
+		
+	}
+
+	public void dispose() {
+		
+	}
+
+}

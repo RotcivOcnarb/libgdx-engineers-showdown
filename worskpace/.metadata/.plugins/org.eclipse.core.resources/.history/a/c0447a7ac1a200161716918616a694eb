@@ -1,0 +1,20 @@
+package com.digitalmatrix.game;
+
+import com.badlogic.gdx.graphics.OrthographicCamera;
+import com.badlogic.gdx.physics.box2d.World;
+
+public class Player extends GameObject{
+	
+	OrthographicCamera camera;
+	
+	protected Player(World world, long addr) {
+		super(world, addr);
+	}
+
+
+	
+	public void setCamera(OrthographicCamera camera){
+		this.camera = camera;
+	}
+
+}

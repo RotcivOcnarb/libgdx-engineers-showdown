@@ -1,0 +1,50 @@
+package com.digitalmatrix.game;
+
+import com.badlogic.gdx.Gdx;
+import com.badlogic.gdx.Input;
+import com.badlogic.gdx.graphics.OrthographicCamera;
+import com.badlogic.gdx.graphics.g2d.SpriteBatch;
+import com.badlogic.gdx.math.Vector2;
+import com.badlogic.gdx.physics.box2d.BodyDef;
+import com.badlogic.gdx.physics.box2d.CircleShape;
+import com.badlogic.gdx.physics.box2d.World;
+
+public class Player extends GameObject{
+	
+	OrthographicCamera camera;
+	
+	public Player(World world, BodyDef def) {
+		super(world, def);
+		body.setUserData(this);
+		
+		CircleShape circ = new CircleShape();
+		circ.setRadius(32);
+		body.createFixture(circ, 1);
+		body.setLinearDamping(10);
+		circ.dispose();
+	}
+
+	public void setCamera(OrthographicCamera camera){
+		this.camera = camera;
+	}
+	
+	public void update(float delta){
+		input();
+		
+	}
+	
+	public void input(){
+		if(Gdx.input.isKeyPressed(Input.Keys.W)){
+			body.applyForceToCenter(new Vector2(0, 100*body.getMass()), true);
+			System.out.println("applying");
+		}
+		if(Gdx.input.isKeyPressed(Input.Keys.S)){
+			body.applyForceToCenter(new Vector2(0, -100*body.getMass()), true);
+			System.out.println("applying");
+		}
+	}
+	
+	public void render(SpriteBatch batch){
+		
+	}
+}
